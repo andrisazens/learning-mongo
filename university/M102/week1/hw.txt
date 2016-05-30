@@ -1,7 +1,32 @@
 1) db.isMaster().maxBsonObjectSize -> 16777216
 
 2) 
+Q: Download the handout. Take a look at its content.
 
+Now, import its contents into MongoDB, into a database called "pcat" and a collection called "products". Use the mongoimport utility to do this.
+When done, run this query in the mongo shell:
+
+db.products.find({type:"case"}).count()
+What's the result?
+
+A:
 mongoimport --db pcat --collection products --file <path_to_file>\Products__hw1.2.json 
-
 db.products.find({type:"case"}).count() -> 3
+
+3) 
+ Q: 
+ At this point you should have pcat.products loaded from the previous step. You can confirm this by running in the shell:
+    db.products.find()// or:    
+    db.products.count()// should print out "11"
+ Now, what query would you run to get all the products where brand equals the string "ACME"?
+ 
+ A: db.products.find({brand:"ACME"})
+ 
+4) 
+Q:
+db.products.find( { }, { name : 1, _id : 0 } ).sort( { name : 1 } )
+var c = db.products.find( { } ).sort( { name : -1 } ); while( c.hasNext() ) { print( c.next().name); }
+var c = db.products.find( { } ).sort( { name : 1 } ); c.forEach( function( doc ) { print( doc.name ) } );
+var c = db.products.find( { }, { name : 1, _id : 0 } ).sort( { name : 1 } ); while( c.hasNext() ) { print( c.next().name); }
+
+A: 3 and 4
