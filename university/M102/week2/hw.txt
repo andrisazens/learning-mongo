@@ -1,0 +1,32 @@
+mongo --shell pcat C:\Coding\learning-mongo\university\M102\week2\Homework2__hw2.1.js
+
+1.
+
+b = db.products_bak; db.products.find().forEach( function(o){ b.insert(o) } )
+b.count()
+
+homework.a => 3.05
+
+2.
+
+db.products.insert(
+{
+    "_id" : "ac9",
+    "name" : "AC9 Phone",
+    "brand" : "ACME",
+    "type" : "phone",
+    "price" : 333,
+    "warranty_years" : 0.25,
+    "available" : true
+}
+)
+
+db.products.find({ _id : ObjectId("507d95d5719dbef170f15c00") })
+db.products.update({ _id : ObjectId("507d95d5719dbef170f15c00") }, { $set: { "term_years":3 } })
+db.products.update({ _id : ObjectId("507d95d5719dbef170f15c00") }, { $set: { "limits.sms.over_rate": 0.01 } })
+
+homework.b() => 0.050.019031
+
+3.
+
+db.products.count({"limits.voice":{$exists:true}}) => 3
