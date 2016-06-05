@@ -6,3 +6,5 @@ mongod --port 30003 --dbpath mongod-arb --replSet CorruptionTest --nojournal
 
 cd handouts
 tar -zxvf Primary__m202_week3.2d0db21c343d
+tar -zxvf Secondary__m202_week3.e64a2e4bdb06
+tar -zxvf Arbiter__m202_week3.5e938409f282
