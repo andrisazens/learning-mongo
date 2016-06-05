@@ -3,3 +3,6 @@
 mongod --port 30001 --dbpath mongod-pri --replSet CorruptionTest --smallfiles --oplogSize 128 --nojournal
 mongod --port 30002 --dbpath mongod-sec --replSet CorruptionTest --smallfiles --oplogSize 128 --nojournal
 mongod --port 30003 --dbpath mongod-arb --replSet CorruptionTest --nojournal
+
+cd handouts
+tar -zxvf Primary__m202_week3.2d0db21c343d
