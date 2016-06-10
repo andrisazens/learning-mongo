@@ -1,0 +1,9 @@
+1.
+
+"C:\Program Files\MongoDB\Server\3.2\bin\mongo" --shell localhost/performance C:\Coding\learning-mongo\university\M102\week3\performance.js
+
+db.sensor_readings.createIndex({ active: 1, tstamp: 1 })
+
+db.sensor_readings.getIndexes()
+
+homework.a() => 6
