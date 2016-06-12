@@ -8,13 +8,34 @@ db.sensor_readings.getIndexes()
 
 homework.a() => 6
 
+2.
+"C:\Program Files\MongoDB\Server\3.0\bin\mongo" --shell localhost/performance C:\Coding\learning-mongo\university\M102\week3\performance.js
+
+=> 12
+
 3.
 "C:\Program Files\MongoDB\Server\3.0\bin\mongoimport" -d pcat -c products --drop C:\Coding\learning-mongo\university\M102\week3\products.json
 
 db.products.createIndex({ for: 1 })
 
-Q1. db.products.find({for:"ac3"}).count() => 4
-Q2. 
+After creating the index, do a find() for products that work with an "ac3" phone ("ac3" is present in the "for" field).
+
+Q1: How many products match this query?
+Q2: Run the same query, but this time do an explain(). How many documents were examined?
+Q3: Does the explain() output indicate that an index was used?
+
+Q1: 0
+Q1: 1
+Q1: 3
+Q1 : 4
+Q2 : 1
+Q2 : 4
+Q2 : 5
+Q2 : 12
+Q3 : No
+Q3 : Yes
+
+4,4,Yes
 
 4. 
 Which of the following are available in WiredTiger but not in MMAPv1? Check all that apply.
