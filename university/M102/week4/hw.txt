@@ -1,0 +1,11 @@
+1.
+
+mongod --dbpath C:\Data\mongo_test\1 --logpath C:\Data\mongo_test\log1.txt --logappend --port 27001 --smallfiles --oplogSize 50
+mongod --dbpath C:\Data\mongo_test\2 --logpath C:\Data\mongo_test\log2.txt --logappend --port 27002 --smallfiles --oplogSize 50
+mongod --dbpath C:\Data\mongo_test\3 --logpath C:\Data\mongo_test\log3.txt --logappend --port 27003 --smallfiles --oplogSize 50
+
+mongo --port 27001 --shell C:\Coding\learning-mongo\university\M102\week4\replication.js
+
+homework.init()
+
+homework.a() => 5001
