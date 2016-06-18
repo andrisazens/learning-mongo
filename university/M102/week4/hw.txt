@@ -20,3 +20,11 @@ use replication
 db.foo.find()
 
 homework.b() => 5002
+
+3.
+
+mongod --dbpath C:\Data\mongo_test\1 --logpath C:\Data\mongo_test\log1.txt --logappend --port 27001 --smallfiles --oplogSize 50 --replSet hw4_3
+mongod --dbpath C:\Data\mongo_test\2 --logpath C:\Data\mongo_test\log2.txt --logappend --port 27002 --smallfiles --oplogSize 50 --replSet hw4_3
+mongod --dbpath C:\Data\mongo_test\3 --logpath C:\Data\mongo_test\log3.txt --logappend --port 27003 --smallfiles --oplogSize 50 --replSet hw4_3
+
+mongod --dbpath C:\Data\mongo_test\1 --logappend --port 27001 --smallfiles --oplogSize 50
