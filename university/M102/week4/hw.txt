@@ -1,3 +1,5 @@
+C:\Program Files\MongoDB\Server\3.0\bin
+
 1.
 
 mongod --dbpath C:\Data\mongo_test\1 --logpath C:\Data\mongo_test\log1.txt --logappend --port 27001 --smallfiles --oplogSize 50
@@ -27,4 +29,22 @@ mongod --dbpath C:\Data\mongo_test\1 --logpath C:\Data\mongo_test\log1.txt --log
 mongod --dbpath C:\Data\mongo_test\2 --logpath C:\Data\mongo_test\log2.txt --logappend --port 27002 --smallfiles --oplogSize 50 --replSet hw4_3
 mongod --dbpath C:\Data\mongo_test\3 --logpath C:\Data\mongo_test\log3.txt --logappend --port 27003 --smallfiles --oplogSize 50 --replSet hw4_3
 
-mongod --dbpath C:\Data\mongo_test\1 --logappend --port 27001 --smallfiles --oplogSize 50
+mongo --port 27001 --shell C:\Coding\learning-mongo\university\M102\week4\replication.js
+
+rs.add("Leks-PC:27002")
+rs.add("Leks-PC:27003")
+
+homework.c() => 5
+
+4.
+
+mongo --port 27001 --shell C:\Coding\learning-mongo\university\M102\week4\replication.js
+rs.stepDown()
+
+mongo --port 27002 --shell C:\Coding\learning-mongo\university\M102\week4\replication.js
+rs.remove("Leks-PC:27001")
+
+homework.d() => 6
+
+5.
+
