@@ -1,0 +1,7 @@
+C:\Program Files\MongoDB\Server\3.0\bin
+
+1.
+
+mongod --dbpath C:\Data\mongo_6 --logpath C:\Data\mongo_6\log1.txt --logappend --port 27101 --smallfiles --oplogSize 50
+
+mongo --shell localhost/week6 week6.js

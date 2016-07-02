@@ -1,4 +1,17 @@
 
+1.
+mongod --dbpath C:\Data\mongo_test2\1 --logpath C:\Data\mongo_test2\log1.txt --logappend --port 27101 --smallfiles --oplogSize 50 --replSet w5
+
+mongo --port 27101
+rs.initiate()
+
+mongod --dbpath C:\Data\mongo_test2\2 --logpath C:\Data\mongo_test2\log2.txt --logappend --port 27102 --smallfiles --oplogSize 50 --replSet w5
+mongod --dbpath C:\Data\mongo_test2\3 --logpath C:\Data\mongo_test2\log3.txt --logappend --port 27103 --smallfiles --oplogSize 50 --replSet w5
+rs.add("Leks-PC:27102")
+rs.addArb("Leks-PC:27103")
+
+mongo --port 27103
+rs.status().state => 7 // ARBITER
 
 3.
 
@@ -10,3 +23,5 @@ You only have two data centers available. Which arrangement(s) of servers will a
 All 3 servers in data center 1.
 2 servers in data center 1, one server in data center 2.
 OK - None of the above
+
+4. {force : true}
