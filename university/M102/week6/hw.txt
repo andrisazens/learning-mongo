@@ -1,7 +1,17 @@
 C:\Program Files\MongoDB\Server\3.0\bin
+md C:\Data\mongo_6
 
 1.
 
 mongod --dbpath C:\Data\mongo_6 --logpath C:\Data\mongo_6\log1.txt --logappend --port 27101 --smallfiles --oplogSize 50
 
-mongo --shell localhost/week6 week6.js
+mongo --shell localhost/week6 C:\Coding\learning-mongo\university\M102\week6\week6.js
+
+
+
+mongod --shardsvr --dbpath C:\Data\mongo_6 --logpath C:\Data\mongo_6\log1.txt --logappend --port 27018 --smallfiles --oplogSize 50
+mongod --configsvr --dbpath C:\Data\mongo_6_1\c1 --logpath C:\Data\mongo_6_1\c1\log1.txt --logappend --port 27019 --smallfiles --oplogSize 50
+mongos --configdb Leks-PC:27019 --port 27020
+
+mongo --shell localhost:27020/week6 C:\Coding\learning-mongo\university\M102\week6\week6.js
+sh.addShard("Leks-PC:27018")
