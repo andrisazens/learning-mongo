@@ -191,6 +191,8 @@ b. MongoDB has a data type for binary data.
 c. MongoDB supports atomic operations on individual documents.
 d. MongoDB allows you to choose the storage engine separately for each collection on your mongod.
 
+b,c,d
+
 7. =============================================== /// ===================================================
 
 Which of these statements is true?
@@ -199,4 +201,45 @@ a. MongoDB is "multi-master" -- you can write anywhere, anytime.
 b. MongoDB supports reads from slaves/secondaries that are in remote locations.
 c. Most MongoDB queries involve javascript execution on the database server(s).
 
-b,c
+b
+
+8. =============================================== /// ===================================================
+
+mongorestore gene_backup\s1 --port 27018
+mongorestore gene_backup\s2 --port 27020
+mongorestore gene_backup\config_server --port 27019
+
+start mongod --shardsvr --dbpath C:\Data\mongo_exam\s1 --logpath C:\Data\mongo_exam\log_s1.txt --logappend --port 27018 --smallfiles --oplogSize 50
+start mongod --shardsvr --dbpath C:\Data\mongo_exam\s2 --logpath C:\Data\mongo_exam\log_s2.txt --logappend --port 27020 --smallfiles --oplogSize 50
+start mongod --configsvr --dbpath C:\Data\mongo_exam\config --logpath C:\Data\mongo_exam\log_config.txt --logappend --port 27019 --smallfiles --oplogSize 50
+
+mongorestore gene_backup\config_server --port 27019
+mongorestore gene_backup\s1 --port 27018
+
+We have been asked by our users to pull some data from a previous database backup of a sharded cluster. They'd like us to set up a temporary data mart for this purpose, in addition to answering some questions from the data. The next few questions involve this user request.
+
+First we will restore the backup. Download gene_backup.zip from the Download Handout link and unzip this to a temp location on your computer.
+
+The original cluster that was backed up consisted of two shards, each of which was a three member replica set. The first one named "s1" and the second "s2". We have one mongodump (backup) for each shard, plus the config database. After you unzip you will see something like this:
+
+$ ls -la
+total 0
+drwxr-xr-x   5 dwight  staff  170 Dec 11 13:47 .
+drwxr-xr-x  17 dwight  staff  578 Dec 11 13:49 ..
+drwxr-xr-x   4 dwight  staff  136 Dec 11 13:45 config_server
+drwxr-xr-x   5 dwight  staff  170 Dec 11 13:46 s1
+drwxr-xr-x   5 dwight  staff  170 Dec 11 13:46 s2
+Our data mart will be temporary, so we won't need more than one mongod per shard, nor more than one config server (we are not worried about downtime, the mart is temporary).
+
+As a first step, restore the config server backup and run a mongod config server instance with that restored data. The backups were made with mongodump. Thus you will use the mongorestore utility to restore.
+
+Once you have the config server running, confirm the restore of the config server data by running the last javascript line below in the mongo shell, and entering the 5 character result it returns.
+
+$ mongo localhost:27019/config
+configsvr>
+configsvr> db
+config
+configsvr> db.chunks.find().sort({_id:1}).next().lastmodEpoch.getTimestamp().toUTCString().substr(20,6) => 39:15
+
+9. =============================================== /// ===================================================
+
