@@ -123,3 +123,8 @@ The file exists but is 0 bytes long.
 
 4. =============================================== /// ===================================================
 
+cfg = rs.conf()
+cfg.members[2].priority = 0
+rs.reconfig(cfg)
+
+part4() => 233
