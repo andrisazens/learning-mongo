@@ -1,0 +1,6 @@
+192.168.1.147 27017
+ db = db.getSiblingDB('admin') 
+ db.changeUserPassword("root", "test123")
+
+--mongoimport --host mongodb1.example.net --port 27017 --username root --password test123 --collection contacts --db marketing --file /tmp/people.json
+mongoimport --host 127.0.0.1 --port 27017 --collection people --db m201 --file /tmp/people.json
