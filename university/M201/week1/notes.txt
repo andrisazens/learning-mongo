@@ -2,5 +2,56 @@
  db = db.getSiblingDB('admin') 
  db.changeUserPassword("root", "test123")
 
---mongoimport --host mongodb1.example.net --port 27017 --username root --password test123 --collection contacts --db marketing --file /tmp/people.json
 mongoimport --host 127.0.0.1 --port 27017 --collection people --db m201 --file /tmp/people.json
+
+mongoimport --host 127.0.0.1 --port 27017 --collection people --db m201 --file C:\Coding\learning-mongo\university\M201\week1\materials\people.json
+
+Lab 1
+db.getCollection('people').createIndex({"first_name": 1, "address.state": -1, "address.city": -1, "ssn": 1})
+
+Which of the following queries are able to use it for both filtering and sorting?
+A db.getCollection('people').find({"first_name":{$gt:"J"}}).sort({"address.city": -1})
+
+B db.getCollection('people').find({"first_name":"Jessica"}).sort({"address.city": -1, "address.state": -1})
+
+C db.getCollection('people').find({"first_name":"Jessica", "address.state":{$lt:"S"}}).sort({"address.state": 1})
+
+D db.getCollection('people').find({"address.city":"West Cindy"}).sort({"address.city": -1})
+
+E db.getCollection('people').find({"address.state":"South Dakota", "first_name":"Jessica"}).sort({"address.city": -1})
+
+//ABC E?
+ABD fail: includes SORT stage that means that index was not used for sorting
+OK CE or E (both answers wrong)
+
+Lab 2
+
+In this lab you're going to examine several example queries and determine which compound index will best service them.
+
+db.people.find({
+    "address.state": "Nebraska",
+    "last_name": /^G/,
+    "job": "Police officer"
+  })
+db.people.find({
+    "job": /^P/,
+    "first_name": /^C/,
+    "address.state": "Indiana"
+  }).sort({ "last_name": 1 })
+db.people.find({
+    "address.state": "Connecticut",
+    "birthday": {
+      "$gte": ISODate("2010-01-01T00:00:00.000Z"),
+      "$lt": ISODate("2011-01-01T00:00:00.000Z")
+    }
+  })
+  
+  
+If you had to build one index on the people collection, which of the following indexes would best sevice all 3 queries?
+
+{"address.state": 1, "job": 1}
+{"address.state": 1, "job": 1,"first_name": 1} 1
+{"address.state": 1, "last_name": 1, "job": 1} 1.
+{"job": 1, "address.state": 1}
+{"job": 1, "address.state": 1, "first_name": 1}
+{"job": 1, "address.state": 1, "last_name": 1}
