@@ -22,7 +22,8 @@ E db.getCollection('people').find({"address.state":"South Dakota", "first_name":
 
 //ABC E?
 ABD fail: includes SORT stage that means that index was not used for sorting
-OK CE or E (both answers wrong)
+OK CE or E  (both answers wrong)
+wrong all 3: CE, E, BE
 
 Lab 2
 
@@ -55,3 +56,5 @@ If you had to build one index on the people collection, which of the following i
 {"job": 1, "address.state": 1}
 {"job": 1, "address.state": 1, "first_name": 1}
 {"job": 1, "address.state": 1, "last_name": 1}
+
+C correct!
