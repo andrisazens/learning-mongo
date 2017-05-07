@@ -24,4 +24,6 @@ B { accountBalance: 1, city: 1, lastName: 1, firstName: 1 }
 C { city: 1, lastName: 1, firstName: 1, accountBalance: 1 }
 D { lastName: 1, firstName: 1, accountBalance: 1, city: 1 }
 
+C Correct
+
 
