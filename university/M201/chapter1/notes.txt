@@ -128,3 +128,4 @@ Choose the best answer:
 {"address.state":1}
 
 D wrong
+B correct, becayse index fully used address.state+stars
